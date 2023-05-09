@@ -19,7 +19,7 @@ The method is written in a framework called CustomKing, which is a framework sim
   See customKing/config/defaults.py
 ## Step5：Train the calibration method
   Python tools/Calibration/main.py
-## View the performance of the calibration method
+## Step6：View the performance of the calibration method
   The calibration performance of the training process is saved in a json file, and the file path can be set in the configuration file.
   
 
