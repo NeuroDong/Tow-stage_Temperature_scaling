@@ -13,5 +13,8 @@ The method is written in a framework called CustomKing, which is a framework sim
   pip install -r requirements.txt  
 ## Step2：Set and check configuration
   See customKing/config/defaults.py
+## Step3：Train the classification model and save the classification model output data (to be used for calibration).
+  Python tools/Image_Classification/main.py
+## Step4：
 
 
