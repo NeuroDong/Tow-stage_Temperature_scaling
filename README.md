@@ -10,4 +10,8 @@ The method is written in a framework called CustomKing, which is a framework sim
 
 # Tutorials
 ## Step1: Installing
-  pip install -r requirements.txt
+  pip install -r requirements.txt  
+## Step2：Set and check configuration
+  See customKing/config/defaults.py
+
+
