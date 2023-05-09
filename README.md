@@ -7,3 +7,7 @@ The method is written in a framework called CustomKing, which is a framework sim
 (1) CustomKing is used for classification or calibration tasks, while Detectron2 is used for detection or segmentation tasks.
 
 (2) The code does not need to be compiled when installing CustomKing, while Detectron2 needs to be compiled. Therefore, CustomKing can easily be compatible with the Linux and Windows systems.
+
+# Tutorials
+## Step1: Installing
+  pip install -r requirements.txt
