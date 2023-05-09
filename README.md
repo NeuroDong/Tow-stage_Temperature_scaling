@@ -22,5 +22,8 @@ The method is written in a framework called CustomKing, which is a framework sim
 ## Step6：View the performance of the calibration method
   The calibration performance of the training process is saved in a json file, and the file path can be set in the configuration file.
   
+# Calibration method code
+  See customKing/modeling/meta_arch/MultiClassification_calibration/Top_label_temperature.py
+  
 
 
