@@ -28,7 +28,6 @@ class Top_label_emperature_scale(nn.Module):
             softmaxed = None
             return Simple_vector,loss,softmaxed
         elif self.stage == 1:    #Fine scaling
-            self.coarse_scaling_vector.requires_grad = False
             _,index = Simple_vector.max(dim=1)
             #Coarse scaling
             divisor = self.coarse_scaling_vector[index]

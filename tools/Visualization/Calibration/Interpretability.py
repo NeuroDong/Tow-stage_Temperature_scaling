@@ -10,18 +10,22 @@ sys.path.insert(0,parentdir)
 class plot_confidence():
     def __init__(self) -> None:
         self.z_list,self.label_list = self.load_data()
-        self.test_z_list,self.test_label_list = self.load_data(data="test")
+        self.test_z_list,self.test_label_list = self.load_data(data="valid")
         self.train_z_list,self.train_label_list = self.load_data(data="train")
 
     def load_data(self,data = "valid"):
+        '''
+        读取数据模型的输出数据和标签
+        返回置信度、预测标签、真实标签
+        '''
         z_list = []
         label_list = []
         if data == "valid":
-            Path = "output\Calibration\Cifar10\Resnet20\Validdata_before_calibration.json"
+            Path = "output\Calibration\Cifar10\densenet_k12_D40\Validdata_before_calibration.json"
         elif data == "test":
-            Path = "output\Calibration\Cifar10\Resnet20\Testdata_before_calibration.json"
+            Path = "output\Calibration\Cifar10\densenet_k12_D40\Testdata_before_calibration.json"
         elif data == "train":
-            Path = "output\Calibration\Cifar10\Resnet20\Traindata_before_calibration.json"
+            Path = "output\Calibration\Cifar10\densenet_k12_D40\Traindata_before_calibration.json"
 
         if isinstance(Path,list):
             for path in Path:
@@ -39,7 +43,7 @@ class plot_confidence():
         return z_list,label_list
 
     def load_temperature(self):
-        model_path = r"output/Calibration/Cifar10/Resnet20/CalibrationTrain/top_label_temperature_scale/top_label_temperature_scale.pth"
+        model_path = r"output/Calibration/Cifar10/densenet_k12_D40/CalibrationTrain/top_label_temperature_scale/top_label_temperature_scale.pth"
         model = torch.load(model_path)
         return model["coarse_scaling_vector"].tolist()
 
@@ -60,6 +64,7 @@ class plot_confidence():
         plt.title("1/temperature",fontsize=40,fontname="Times New Roman")
         plt.tick_params(axis='both', labelsize=30)
 
+        #画过拟合程度：验证集精度/训练集精度
         test_acc_list = [[] for i in range(len(reciprocal_temperature))]
         for i in range(len(self.test_label_list)):
             if self.test_label_list[i] == self.test_z_list[i].index(max(self.test_z_list[i])):
@@ -92,7 +97,7 @@ class plot_confidence():
         gailv = []
         for i in range(len(reciprocal_temperature)-1):
             for j in range(i+1,len(reciprocal_temperature),1):
-                if ((reciprocal_temperature[i]) - (reciprocal_temperature[j]))*((acc_rate[i]) - (acc_rate[j])) > 0:
+                if (reciprocal_temperature[i] - reciprocal_temperature[j])*(acc_rate[i] - acc_rate[j]) > 0:
                     gailv.append(1)
                 else:
                     gailv.append(0)

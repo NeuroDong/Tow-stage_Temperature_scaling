@@ -1,6 +1,5 @@
 '''
-Reference Paper"Parameterized temperature scaling for boosting the expressive power in post-hoc uncertainty calibration"
-Reference code: https://github.com/tochris/pts-uncertainty
+参考论文：《Parameterized temperature scaling for boosting the expressive power in post-hoc uncertainty calibration》
 '''
 
 import torch

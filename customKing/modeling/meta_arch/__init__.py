@@ -6,6 +6,7 @@ from .build import META_ARCH_REGISTRY, build_model  # isort:skip
 
 #Classfication model
 from .Image_classification.Resnext import Resnet20,Resnet110,Resnet18,Resnet34,Resnet50,Resnet101,Resnet152,ResNeXt29_8x64d,ResNeXt29_16x64d,ResNeXt50,ResNeXt101,Wide_resnet50_2,Wide_resnet101_2
+from .Image_classification.DenseNet import densenet_k12_D40,densenet_k12_D100,densenet_k24_D100,densenet_BC_k12_D100,densenet_BC_k24_D250,densenet_BC_k40_D190,densenet121,densenet161,densenet169,densenet201
 
 #MultiClassification calibration model
 from .MultiClassification_calibration.Temperature_scale import temperature_scale
@@ -19,6 +20,7 @@ from .MultiClassification_calibration.Adaptive_temperature import adaptive_tempe
 
 #Calibration evaluate method
 from .Calibration_evaluate.Confidence_ECE import confidence_ece_with_equal_interval,confidence_ece_with_equal_sample
+from .Calibration_evaluate.Classwise_ECE_our import classwise_ece_with_equal_interval_our,classwise_ece_with_equal_sample_our
 from .Calibration_evaluate.Classwise_ECE import classwise_ece_with_equal_interval,classwise_ece_with_equal_sample
 from .Calibration_evaluate.Top_label_ECE import top_label_ece_with_equal_interval,top_label_ece_with_equal_sample
 from .Calibration_evaluate.Thresholded_adaptive_calibration_error import tace_ece

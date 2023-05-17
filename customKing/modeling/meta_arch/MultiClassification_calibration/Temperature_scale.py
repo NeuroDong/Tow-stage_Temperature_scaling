@@ -1,6 +1,5 @@
 '''
-Reference Paper "On calibration of modern neural networks"
-Reference code: https://github.com/markdtw/temperature-scaling-tensorflow
+参考论文：《On calibration of modern neural networks》
 '''
 
 import torch

@@ -10,9 +10,9 @@ from .config import CfgNode as CN
 # IMAGES_PER_BATCH_TRAIN, while the number of images for testing will be
 # IMAGES_PER_BATCH_TEST
 
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------- #
 # Config definition
-# -----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------- #
 
 _C = CN()
 # ---------------------------------------------------------------------------- #
@@ -24,7 +24,7 @@ _C.DATASETS.VALID = "Cifar10_valid"    #valid dataset
 _C.DATASETS.TEST = "Cifar10_test"      #test dataset
 
 _C.MODEL = CN()
-_C.MODEL.META_ARCHITECTURE = "Resnet20"  #select classification model
+_C.MODEL.META_ARCHITECTURE = "densenet_k12_D40"  #select classification model
 _C.MODEL.OUTPUT_NUM_ClASSES = 10    #set class num
 _C.MODEL.INPUT_IMAGESIZE = (32,32)    #set image size
 _C.MODEL.DEVICE = "cuda:0"     #select device
@@ -60,7 +60,7 @@ _C.SOLVER.WARMUP_METHOD = "linear"
 # Calibration model config
 # ---------------------------------------------------------------------------- #
 _C.CALIBRATION_MODEL = CN()
-_C.CALIBRATION_MODEL.META_ARCHITECTURES = ["temperature_scale","top_label_temperature_scale"]
+_C.CALIBRATION_MODEL.META_ARCHITECTURES = ["top_label_temperature_scale"]
 _C.CALIBRATION_MODEL.NUM_CLASS = 10
 _C.CALIBRATION_MODEL.DEVICE = "cuda"
 _C.CALIBRATION_MODEL.JUST_EVAL = False
@@ -71,7 +71,7 @@ _C.CALIBRATION_SOLVER = CN()
 _C.CALIBRATION_SOLVER.START_ITER = 0
 _C.CALIBRATION_SOLVER.OPTIMIZER = "SGD"
 _C.CALIBRATION_SOLVER.LR_SCHEDULER_NAME = "Step_Decay"
-_C.CALIBRATION_SOLVER.BASE_LRS = [0.1,1.0]    #Corresponds to the method in _C.CALIBRATION_MODEL.META_ARCHITECTURES
+_C.CALIBRATION_SOLVER.BASE_LRS = [1.0]    #Corresponds to the method in _C.CALIBRATION_MODEL.META_ARCHITECTURES
 _C.CALIBRATION_SOLVER.MOMENTUM = 0.9      
 _C.CALIBRATION_SOLVER.WEIGHT_DECAY = 0.0001 
 _C.CALIBRATION_SOLVER.NESTEROV = False  
@@ -88,8 +88,8 @@ _C.CALIBRATION_SOLVER.BATCHSIZE = 1000
 _C.CALIBRATION_SOLVER.NUM_WORKS = 20
 
 _C.CALIBRATION_DATASET = CN()
-_C.CALIBRATION_DATASET.VALID_PATH = "output/Calibration/Cifar10/Resnet20/Validdata_before_calibration.json"
-_C.CALIBRATION_DATASET.TEST_PATH = "output/Calibration/Cifar10/Resnet20/Testdata_before_calibration.json"
+_C.CALIBRATION_DATASET.VALID_PATH = r"output/Calibration/Cifar10/densenet_k12_D40/Validdata_before_calibration.json"
+_C.CALIBRATION_DATASET.TEST_PATH = r"output/Calibration/Cifar10/densenet_k12_D40/Testdata_before_calibration.json"
 _C.CALIBRATION_DATASET.LOAD_METHOD = False      #Whether to use pytorch's Dataset class to load data
 
 _C.CALIBRATION_EVALUATE = CN()

@@ -1,6 +1,5 @@
 '''
-Reference Paper: "Beyond temperature scaling: Obtaining well-calibrated multi-class probabilities with dirichlet calibration"
-Reference code: https://github.com/dirichletcal/experiments_dnn
+参考论文：《Beyond temperature scaling: Obtaining well-calibrated multi-class probabilities with dirichlet calibration》
 '''
 
 

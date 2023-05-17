@@ -166,9 +166,9 @@ def load_Cifar10(name,root):
     transform_train = transforms.Compose([
             transforms.Pad([4]),
             transforms.RandomCrop(32),
-            transforms.RandomHorizontalFlip(), 
+            transforms.RandomHorizontalFlip(), #图像一半的概率翻转，一半的概率不翻转
             transforms.ToTensor(),
-            transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)) 
+            transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))  #R,G,B每层的归一化用到的均值和方差
             ])
     transform_test = transforms.Compose([
             transforms.ToTensor(),
@@ -176,20 +176,20 @@ def load_Cifar10(name,root):
             ])
 
     if name == "Cifar10_train":
-        dataset = Cifar10_train_valid_test(root=root, mode="train", download=True, transform=transform_train) 
+        dataset = Cifar10_train_valid_test(root=root, mode="train", download=True, transform=transform_train) #训练数据集
 
     elif name == "Cifar10_valid":
         dataset = Cifar10_train_valid_test(root=root, mode="valid", download=True, transform=transform_test)
     elif name == "Cifar10_train_and_valid":
-        dataset_train = Cifar10_train_valid_test(root=root, mode="train", download=True, transform=transform_train) 
-        dataset_valid = Cifar10_train_valid_test(root=root, mode="valid", download=True, transform=transform_train) 
+        dataset_train = Cifar10_train_valid_test(root=root, mode="train", download=True, transform=transform_train) #训练数据集
+        dataset_valid = Cifar10_train_valid_test(root=root, mode="valid", download=True, transform=transform_train) #训练数据集
         dataset = torchdata.ConcatDataset([dataset_train,dataset_valid])
     if name =="Cifar10_test":
         dataset = Cifar10_train_valid_test(root=root, mode="test", download=True, transform=transform_test)
     if name == "Cifar10_train_and_valid_and_test":
-        dataset_train = Cifar10_train_valid_test(root=root, mode="train", download=True, transform=transform_train) 
-        dataset_valid = Cifar10_train_valid_test(root=root, mode="valid", download=True, transform=transform_train) 
-        dataset_test = Cifar10_train_valid_test(root=root, mode="test", download=True, transform=transform_train)
+        dataset_train = Cifar10_train_valid_test(root=root, mode="train", download=True, transform=transform_train) #训练数据集
+        dataset_valid = Cifar10_train_valid_test(root=root, mode="valid", download=True, transform=transform_train) #验证数据集
+        dataset_test = Cifar10_train_valid_test(root=root, mode="test", download=True, transform=transform_train) #验证数据集
         dataset = torchdata.ConcatDataset([dataset_train,dataset_valid,dataset_test])
     return dataset
 

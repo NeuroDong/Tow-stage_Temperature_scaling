@@ -129,7 +129,12 @@ class doTrain():
         for stage in range(model.stage_num):
             model.stage = stage
             self.stage = stage
-            optimizer = build_Calibration_optimizer_for_all(self.cfg, model,index)   
+
+            if model.stage == 1:
+                if hasattr(model, "coarse_scaling_vector"):
+                    model.coarse_scaling_vector.requires_grad_(False)
+
+            optimizer = build_Calibration_optimizer_for_all(self.cfg, model,index)
             scheduler = build_Calibration_lr_scheduler(self.cfg, optimizer) 
             if model.stage_num > 1:
                 print(model.stage_name[stage]+" training")
