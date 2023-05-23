@@ -1,5 +1,5 @@
 '''
-参考论文：《Parameterized temperature scaling for boosting the expressive power in post-hoc uncertainty calibration》
+Reference paper: 《Parameterized temperature scaling for boosting the expressive power in post-hoc uncertainty calibration》
 '''
 
 import torch

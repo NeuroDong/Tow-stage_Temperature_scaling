@@ -1,6 +1,6 @@
 '''
-参考论文:《Mix-n-Match: Ensemble and Compositional Methods for Uncertainty Calibration in Deep Learning》
-参考代码: https://github.com/zhang64-llnl/Mix-n-Match-Calibration
+Reference paper:《Mix-n-Match: Ensemble and Compositional Methods for Uncertainty Calibration in Deep Learning》
+Official code: https://github.com/zhang64-llnl/Mix-n-Match-Calibration
 '''
 
 import torch

@@ -1,5 +1,5 @@
 '''
-参考论文：《Beyond temperature scaling: Obtaining well-calibrated multi-class probabilities with dirichlet calibration》
+Reference paper:《Beyond temperature scaling: Obtaining well-calibrated multi-class probabilities with dirichlet calibration》
 '''
 
 

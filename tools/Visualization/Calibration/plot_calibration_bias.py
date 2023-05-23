@@ -1,5 +1,5 @@
 '''
-Visualize gaps of different top-labels and components
+Visualize calibration bias of different top-labels and components
 '''
 
 import matplotlib.pyplot as plt
@@ -86,7 +86,7 @@ class Confidence_ECE():
         return ece_list
 
 
-class plot_confidence():
+class plot_calibration_bias():
     def __init__(self) -> None:
         self.z_list,self.label_list = self.load_data("test")
 
@@ -169,7 +169,7 @@ class plot_confidence():
             
 
 if __name__ == "__main__":
-    model = plot_confidence()
+    model = plot_calibration_bias()
 
     #plot gap for different top-labels
     model.top_label_confidence()

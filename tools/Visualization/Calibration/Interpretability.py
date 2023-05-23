@@ -14,10 +14,7 @@ class plot_confidence():
         self.train_z_list,self.train_label_list = self.load_data(data="train")
 
     def load_data(self,data = "valid"):
-        '''
-        读取数据模型的输出数据和标签
-        返回置信度、预测标签、真实标签
-        '''
+        
         z_list = []
         label_list = []
         if data == "valid":
@@ -47,6 +44,53 @@ class plot_confidence():
         model = torch.load(model_path)
         return model["coarse_scaling_vector"].tolist()
 
+    def plot_gap_and_overfiting(self):
+        #画平均差异
+        different_list = [[],[],[],[],[],[],[],[],[],[]]
+        for i in range(len(self.test_label_list)):
+            a = max(self.test_z_list[i])
+            b = (sum(self.test_z_list[i])-max(self.test_z_list[i]))/(len(self.test_z_list[i])-1)
+            different_list[self.test_label_list[i]].append(a-b)
+
+        diff_mean = [sum(x)/len(x) for x in different_list]
+        plt.subplot(2,1,1)
+        plt.subplots_adjust(hspace=0.6)
+        plt.bar([1,2,3,4,5,6,7,8,9,10],diff_mean)
+        plt.plot([1,2,3,4,5,6,7,8,9,10],diff_mean,linewidth = 3, linestyle='-',marker='o', color = "r")
+        plt.xlabel("Classes",fontsize=40,fontname="Times New Roman")
+        plt.ylabel("Value",fontsize=40,fontname="Times New Roman")
+        plt.title("The largest component - The mean of other components",fontsize=40,fontname="Times New Roman")
+        plt.tick_params(axis='both', labelsize=30)
+
+        #画过拟合程度：验证集精度/训练集精度
+        test_acc_list = [[],[],[],[],[],[],[],[],[],[]]
+        for i in range(len(self.test_label_list)):
+            if self.test_label_list[i] == self.test_z_list[i].index(max(self.test_z_list[i])):
+                test_acc_list[self.test_label_list[i]].append(1)
+            else:
+                test_acc_list[self.test_label_list[i]].append(0)
+        test_acc = [sum(x)/len(x) for x in test_acc_list]
+
+        train_acc_list = [[],[],[],[],[],[],[],[],[],[]]
+        for i in range(len(self.train_label_list)):
+            if self.train_label_list[i] == self.train_z_list[i].index(max(self.train_z_list[i])):
+                train_acc_list[self.train_label_list[i]].append(1)
+            else:
+                train_acc_list[self.train_label_list[i]].append(0)
+
+        train_acc = [sum(x)/len(x) for x in train_acc_list]
+        acc_rate = [test_acc[i]/train_acc[i] for i in range(len(train_acc))]
+
+        plt.subplot(2,1,2)
+        plt.bar([1,2,3,4,5,6,7,8,9,10],acc_rate)
+        plt.plot([1,2,3,4,5,6,7,8,9,10],acc_rate,linewidth = 3, linestyle='-',marker='o', color = "r")
+        plt.ylim([0.5,1])
+        plt.xlabel("Classes",fontsize=40,fontname="Times New Roman")
+        plt.ylabel("Value",fontsize=40,fontname="Times New Roman")
+        plt.title("Degree of overfitting (test set acc / train set acc)",fontsize=40,fontname="Times New Roman")
+        plt.tick_params(axis='both', labelsize=30)
+        plt.show()
+
     def plot_temperature_and_overfiting(self):
         '''
         Visualize the relationship between the reciprocal of temperature and the overfit curve
@@ -64,7 +108,7 @@ class plot_confidence():
         plt.title("1/temperature",fontsize=40,fontname="Times New Roman")
         plt.tick_params(axis='both', labelsize=30)
 
-        #画过拟合程度：验证集精度/训练集精度
+        
         test_acc_list = [[] for i in range(len(reciprocal_temperature))]
         for i in range(len(self.test_label_list)):
             if self.test_label_list[i] == self.test_z_list[i].index(max(self.test_z_list[i])):
@@ -105,5 +149,9 @@ class plot_confidence():
 
 if __name__ == "__main__":
     model = plot_confidence()
+
+    #Visualize the relationship between the gap and the overfit curve
+    model.plot_gap_and_overfiting()
+
     #Visualize the relationship between the reciprocal of temperature and the overfit curve
     model.plot_temperature_and_overfiting()

@@ -1,5 +1,5 @@
 '''
-参考论文：《Adaptive temperature scaling for robust calibration of deep neural networks》
+Reference paper:《Adaptive temperature scaling for robust calibration of deep neural networks》
 '''
 
 import torch

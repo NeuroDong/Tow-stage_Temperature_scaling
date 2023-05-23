@@ -1,6 +1,6 @@
 '''
-参考论文:《Intra Order-Preserving Functions for Calibretion of Multi-Class Neural Networks》
-官方代码:https://github.com/AmirooR/IntraOrderPreservingCalibration
+Reference paper:《Intra Order-Preserving Functions for Calibretion of Multi-Class Neural Networks》
+Official code: https://github.com/AmirooR/IntraOrderPreservingCalibration
 '''
 
 import torch

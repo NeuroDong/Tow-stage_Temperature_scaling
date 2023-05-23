@@ -1,5 +1,5 @@
 '''
-参考论文：《On calibration of modern neural networks》
+Reference paper:《On calibration of modern neural networks》
 '''
 
 import torch
