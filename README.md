@@ -1,5 +1,5 @@
-# Top-label_Temperature_scaling
-An efficient confidence calibration method for multi-classification neural networks
+# Tow-stage_Temperature_scaling
+Two-stage temperature scaling: a balancing method between sample-specific and class-specific temperature scaling
 
 # code structure
 The method is written in a framework called [CustomKing](https://github.com/NeuroDong/CustomKing), which is a framework similar to [Detectron2](https://github.com/facebookresearch/detectron2) written by [Fvcore](https://github.com/facebookresearch/fvcore).
